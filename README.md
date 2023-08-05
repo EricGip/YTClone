@@ -1,2 +1,2 @@
 # YTClone
-neetcode youtube clone tutorial
+Upload and watch videos created with Nextjs, Express, and GCP
