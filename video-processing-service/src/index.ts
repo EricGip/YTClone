@@ -1,5 +1,4 @@
 import express from 'express';
-import ffmpeg from 'fluent-ffmpeg';
 import { convertVideo, deleteProcessedVideo, deleteRawVideo, downloadRawVideo, setupDirectories, uploadProcesssedVideo } from './storage';
 
 setupDirectories();
@@ -10,7 +9,7 @@ app.use(express.json());
 
 app.post('/process-video', async (req, res) => {
     
-    // all from gcp cloud pub sub documentation
+    // all from gcp cloud pub sub documentation, getting bucket and file name from cloud pub/sub message
     let data;
 
     try {
@@ -50,6 +49,8 @@ app.post('/process-video', async (req, res) => {
         deleteRawVideo(inputFileName),
         deleteProcessedVideo(outputFileName)
     ])
+
+    return res.status(200).send(`Processsing finished successfully`);
 });
 
 const port = process.env.PORT || 3000;
