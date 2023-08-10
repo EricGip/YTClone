@@ -7,12 +7,12 @@ import ffmpeg from "fluent-ffmpeg";
 const storage = new Storage();
 
 // bucket link to download video
-const rawVideoBucketName = "UniqueBucketName1";
-const processedVideoBucketName = "UniqueBucketName2Processed";
+const rawVideoBucketName = "nc-tut-raw-videos";
+const processedVideoBucketName = "nc-tut-processed-videos";
 
 // local storage, data should be deleted after
 const localRawVideoPath = "./raw-videos";
-const localProcessedVideoPath = "./processed-videos"
+const localProcessedVideoPath = "./processed-videos";
 
 // creates local directories for videos dl'd from google cloud
 export function setupDirectories() {
@@ -76,7 +76,7 @@ export async function uploadProcesssedVideo(fileName: string) {
         `${localProcessedVideoPath}/${fileName} uploaded to gs://${processedVideoBucketName}/${fileName}.`
     );
 
-    // by default making every video public. 
+    // default making every video public. 
     await bucket.file(fileName).makePublic();
 }
 
