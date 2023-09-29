@@ -1,5 +1,7 @@
 import express from 'express';
 import { convertVideo, deleteProcessedVideo, deleteRawVideo, downloadRawVideo, setupDirectories, uploadProcesssedVideo } from './storage';
+import { setVideo } from './firestore';
+import { isVideoNew } from './firestore';
 
 setupDirectories();
 
@@ -9,7 +11,6 @@ app.use(express.json());
 
 app.post('/process-video', async (req, res) => {
     
-    // all from gcp cloud pub sub documentation, getting bucket and file name from cloud pub/sub message
     let data;
 
     try {
@@ -24,13 +25,24 @@ app.post('/process-video', async (req, res) => {
     }
 
     // processing bucket
-    const inputFileName = data.name;
+    const inputFileName = data.name; // Format of <UID>-<DATE>.<EXTENSION>
     const outputFileName = `processed-${inputFileName}`;
+    const videoId = inputFileName.split(".")[0];
+
+    if (!isVideoNew(videoId)) {
+        return res.status(400).send("Bad Request: video already procesing or processed");
+    } else {
+        await setVideo(videoId, {
+            id: videoId,
+            uid: videoId.split("-")[0],
+            status: "processing"
+        });
+    }
 
     // download the raw video from cloud storage
     await downloadRawVideo(inputFileName);
 
-    // convert video to 720p, using try catch bc it may fail
+    // convert video to 360p, using try catch bc it may fail
     try {
         await convertVideo(inputFileName, outputFileName);
     } catch (err) {
@@ -43,7 +55,13 @@ app.post('/process-video', async (req, res) => {
     }
 
     // upload processed video to cloud storage
-    await uploadProcesssedVideo(outputFileName)
+    await uploadProcesssedVideo(outputFileName);
+
+    // after its processed, update status
+    await setVideo(videoId, {
+        status: "processed",
+        filename: outputFileName
+    });
 
     await Promise.all([
         deleteRawVideo(inputFileName),
