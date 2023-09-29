@@ -8,7 +8,7 @@ import styles from "./upload.module.css"
 export default function Upload() {
 	
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const file = event?.target.files?.item(0);
+		const file = event.target.files?.item(0);
 		if (file) {
 			handleUpload(file);
 		}
