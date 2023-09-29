@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./navbar.module.css";
-import SignIn from "./sign-in"
+import SignIn from "./sign-in";
+import Upload from "./upload";
 
 import { onAuthStateChangedHelper } from "../firebase/firebase";
 import { useEffect, useState } from "react";
@@ -30,12 +31,10 @@ export default function NavBar() {
             <Link href="/">
                 <Image width={90} height={90}
                     src="/kinaSpace.png" alt="Home page" />
-                <h1 className={styles.navTitle}> project a </h1>
             </Link>
             {
-                // TODO: Add an upload IF user is signed in 
+                user && <Upload /> 
             }
-
             <SignIn user={user}/>
         </nav>
     )
