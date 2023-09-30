@@ -13,6 +13,8 @@ const storage = new Storage();
 
 const rawVideoBucketName = "nc-tut-raw-videos";
 
+const videoCollectionId = "videos";
+
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
     uid: user.uid,
@@ -49,4 +51,12 @@ export const generateUploadUrl = onCall({maxInstances: 1}, async (request) => {
   });
 
   return {url, fileName};
+});
+
+// limitations, literally just hardcoding 10 videos
+export const getVideos = onCall({maxInstances: 1}, async () => {
+  const snapshot =
+    await firestore.collection(videoCollectionId).limit(10).get();
+  // for every document, we have to call doc.data
+  return snapshot.docs.map((doc) => doc.data());
 });
