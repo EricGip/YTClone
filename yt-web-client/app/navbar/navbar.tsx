@@ -35,7 +35,10 @@ export default function NavBar() {
             </Link> 
         
             {
-                user && <Upload /> 
+                // removing upload button while public due to no security yet. will be implementing
+                // but it might be a "halting problem" and we have to do it manually
+                // user && <Upload /> 
+                <p className={styles.hiddenText}> Sorry, we are working on securing public upload functionality. We are currently manually whitetlist those who can upload. Thank you. </p>
             }
             <SignIn user={user}/>
         </nav>

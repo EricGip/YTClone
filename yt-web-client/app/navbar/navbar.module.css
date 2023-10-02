@@ -8,7 +8,14 @@
 .navTitle {
     float: right;
     font-size: 30px;
-    color: gray;
+    color: white;
 }
+
+.hiddenText {
+    word-wrap: wrap;
+    overflow: hidden;
+    color: white;
+}
+
 
 
