@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import { getVideos } from "./firebase/functions";
 import Image from "next/image";
 import Link from "next/link";
+import React from 'react';
 
 export default async function Home() {
 
@@ -14,7 +15,7 @@ export default async function Home() {
       {
         videos.map((video) => (
           <div className={styles.item}>
-            <Link href={`/watch?v=${video.filename}`} key={video.id} className={styles.thumbnail} >
+            <Link href={`/watch?v=${video.filename}`} className={styles.thumbnail} key={video.id}>
               <Image src={'/kinaFiller.jpeg'} alt='video' width={350} height={200}
                 />
                 <span className={styles.thumbnailText}> {video.title}  </span>
