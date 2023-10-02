@@ -24,13 +24,14 @@ export default function Watch() {
             const pulledTitle = fileObject.title
             
             //console.log(`Filename: ${fileName}`);
-            //console.log(`Description: ${pulledDescription}`)
+            console.log(`Description: ${pulledDescription}`)
             
             // pulledDescription must be a string, so make sure it's not undefined
             if (fileName == videoSrc && pulledDescription && pulledTitle) {
                 setTitle(pulledTitle);
                 setDescription(pulledDescription);
-                //console.log(description)
+                console.log(description)
+                console.log(title)
             }
         }
     }

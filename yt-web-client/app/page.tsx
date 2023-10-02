@@ -8,7 +8,7 @@ export default async function Home() {
 
   const videos = await getVideos();
 
-  // console.log(videos)
+  console.log(videos)
 
   return (
     <main>
@@ -16,10 +16,9 @@ export default async function Home() {
         videos.map((video) => (
           <div className={styles.item}>
             <Link href={`/watch?v=${video.filename}`} className={styles.thumbnail} key={video.id}>
-              <Image src={'/kinaFiller.jpeg'} alt='video' width={350} height={200}
-                />
+              <Image src={`/${video.thumb}`} alt='video' width={350} height={200}/>
                 <span className={styles.thumbnailText}> {video.title}  </span>
-                <span className={styles.thumbnailText}> {video.author} </span>
+                <span className={styles.thumbnailText}> Author: {video.author} </span>
             </Link>
           </div>
         ))
