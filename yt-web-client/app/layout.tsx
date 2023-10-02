@@ -1,4 +1,4 @@
-import './globals.css';
+import styles from './globals.module.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NavBar from './navbar/navbar';
@@ -17,9 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={styles.background} >
         <NavBar />
-        {children}
+        {children } 
       </body>
     </html>
   )

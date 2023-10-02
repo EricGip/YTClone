@@ -30,8 +30,10 @@ export default function NavBar() {
         <nav className={styles.nav}>
             <Link href="/">
                 <Image width={90} height={90}
-                    src="/kinaSpace.png" alt="Home page" />
-            </Link>
+                    src="/kinaSpace.png" alt="Home page" /> 
+                <h1 className={styles.navTitle}> Project X </h1>
+            </Link> 
+        
             {
                 user && <Upload /> 
             }
