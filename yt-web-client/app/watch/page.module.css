@@ -1,8 +1,13 @@
-.title {
-    color: gray;
+.div {
+    white-space: pre-line;
 }
 
-.descript {
-    color: gray;
-    background-color: gray;
+.title {
+    color: white;
+    
+}
+
+.description {
+    color: white;
+    white-space: pre-line;
 }
