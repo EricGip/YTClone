@@ -8,6 +8,6 @@ Upload and watch videos created with Nextjs, Express, and GCP serverless backend
 4. Firebase Firestore will store metadata for videos
 5. Cloud run hosting our frontend Next.js app will fetch videos from Firestore and return them onto the client for user to view.
 
-## (Demo link here)[https://yt-web-client-ertxgnbvwq-uc.a.run.app/]
+### [Demo link here](https://yt-web-client-ertxgnbvwq-uc.a.run.app/)
 
 
