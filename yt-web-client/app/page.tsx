@@ -7,20 +7,25 @@ export default async function Home() {
 
   const videos = await getVideos();
 
-  console.log(videos)
+  // console.log(videos)
 
   return (
     <main>
       {
         videos.map((video) => (
-          <Link href={`/watch?v=${video.filename}`} key={video.id} >
-            <Image src={'/kinaFiller.jpeg'} alt='video' width={120} height={80}
-              className={styles.thumbnail}/>
-          </Link>
+          <div className={styles.item}>
+            <Link href={`/watch?v=${video.filename}`} key={video.id} className={styles.thumbnail} >
+              <Image src={'/kinaFiller.jpeg'} alt='video' width={350} height={200}
+                />
+                <span className={styles.thumbnailText}> {video.title}  </span>
+                <span className={styles.thumbnailText}> {video.author} </span>
+            </Link>
+          </div>
         ))
       }
     </main>
   )
 }
 
+// nextjs caches the pull results, we use this to refresh results. 
 export const revalidate = 60;

@@ -6,10 +6,10 @@
     display: flex; /* Use Flexbox to center the text */
     justify-content: center; /* Center text horizontally */
     align-items: center; /* Center text vertically */
-    width: 25px;
-    height: 25px;
+    width: 37px;
+    height: 30px;
     border-radius: 50%; /* Make it circular */
-    color: black; /* Color of the text */
+    color: gray; /* Color of the text */
     border: none;
     cursor: pointer;
     font-size: 10px;
