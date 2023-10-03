@@ -1,4 +1,4 @@
-# YTClone
+# Personal video hosting app to store vods
 Upload and watch videos created with Nextjs, Express, and GCP serverless backend.
 
 0. User signs in with Google SSO. Minimal metadata(ID,UID) is stored in firebase to associate owners with their data.
